@@ -5,9 +5,17 @@ RSpec.describe Player do
     player = Player.new({name: "Luka Modric", position: "midfielder"})
 
     expect(player).to be_instance_of(Player)
-    expect(player.name).to eq("Luka Modric")
-    expect(player.position).to eq("midfielder")
   end
 
-  
+  it 'Player has a name' do
+    player = Player.new({name: "Luka Modric", position: "midfielder"})
+
+    expect(player.name).to eq("Luka Modric")
+  end
+
+  it 'Player has a position' do
+    player = Player.new({name: "Luka Modric", position: "midfielder"})
+
+    expect(player.position).to eq("midfielder")
+  end
 end
