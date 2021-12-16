@@ -26,4 +26,43 @@ RSpec.describe WorldCup do
     world_cup = WorldCup.new(2018, [france, croatia])
   end
 
+  it 'knows the active players by position played' do
+    france = Team.new("France")
+    croatia = Team.new("Croatia")
+    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
+    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
+    modric = Player.new({name: "Luka Modric", position: "midfielder"})
+    vida = Player.new({name: "Domagoj Vida", position: "defender"})
+
+    france.add_player(mbappe)
+    france.add_player(pogba)
+    croatia.add_player(vida)
+    croatia.add_player(modric)
+
+    world_cup = WorldCup.new(2018, [france, croatia])
+
+    expect(world_cup.active_players_by_position("midfielder")).to eq([pogba, modric])
+    expect(world_cup.active_players_by_position("forward")).to eq([mbappe])
+    expect(world_cup.active_players_by_position("defender")).to eq([vida])
+  end
+
+  it 'eliminated players ar not included in active players by position' do
+    france = Team.new("France")
+    croatia = Team.new("Croatia")
+    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
+    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
+    modric = Player.new({name: "Luka Modric", position: "midfielder"})
+    vida = Player.new({name: "Domagoj Vida", position: "defender"})
+    france.add_player(mbappe)
+    france.add_player(pogba)
+    croatia.add_player(vida)
+    croatia.add_player(modric)
+    world_cup = WorldCup.new(2018, [france, croatia])
+
+    croatia.eliminated = true
+
+    expect(world_cup.active_players_by_position("midfielder")).to eq([pogba])
+    expect(world_cup.active_players_by_position("forward")).to eq([mbappe])
+    expect(world_cup.active_players_by_position("defender")).to eq([])
+  end
 end
