@@ -11,4 +11,8 @@ class Team
   def eliminated?
     @eliminated
   end
+
+  def add_player(player)
+    @players << player
+  end 
 end

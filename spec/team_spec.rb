@@ -24,9 +24,31 @@ RSpec.describe Team do
     team = Team.new("France")
     expect(team.eliminated?).to be false
 
-    team.eliminated = true 
+    team.eliminated = true
 
     expect(team.eliminated?).to be true
+  end
+
+  it 'initializes with no players' do
+    team = Team.new("France")
+
+    expect(team.players).to eq([])
+  end
+
+  it 'can have multiple players' do
+    team = Team.new("France")
+    mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
+    pogba = Player.new({name: "Paul Pogba", position: "midfielder"})
+    expect(team.players).to eq([])
+
+    team.add_player(mbappe)
+
+    expect(team.players).to eq([mbappe])
+
+    team.add_player(pogba)
+
+    expect(team.players).to eq([mbappe, pogba])
+    expect(team.players[0]).to be_instance_of Player
   end
 
 
