@@ -1,9 +1,9 @@
 class Player
-  attr_reader :name, :position
+  attr_reader :name, :position 
 
-  def initialize()
-    @name = :name
-    @position = :position
+  def initialize(info)
+    @name = info[:name]
+    @position = info[:position]
   end
 
 end

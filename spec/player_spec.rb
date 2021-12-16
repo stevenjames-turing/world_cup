@@ -8,3 +8,6 @@ RSpec.describe Player do
     expect(player.name).to eq("Luka Modric")
     expect(player.position).to eq("midfielder")
   end
+
+  
+end
