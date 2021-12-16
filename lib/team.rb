@@ -14,5 +14,15 @@ class Team
 
   def add_player(player)
     @players << player
-  end 
+  end
+
+  def players_by_position(position)
+    players_by_position = []
+    @players.each do |player|
+      if player.position == position
+        players_by_position << player
+      end
+    end
+    players_by_position
+  end
 end
